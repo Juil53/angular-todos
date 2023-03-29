@@ -32,7 +32,6 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     //Custom Module
     TodoModule,
-    
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

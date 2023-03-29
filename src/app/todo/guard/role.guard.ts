@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivateChild,
+  CanActivate,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -11,18 +11,21 @@ import { LoginService } from 'src/app/login/login.service';
 @Injectable({
   providedIn: 'root',
 })
-export class TodoGuard implements CanActivateChild {
+export class RoleGuard implements CanActivate {
   constructor(private loginService: LoginService) {}
 
-  canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
+  canActivate(
+    route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // console.log(this.loginService.isAdmin)
-    return true
+    if (this.loginService.auth.isAdmin && this.loginService.auth.isLogging) {
+      console.log(this.loginService.auth.isAdmin);
+      return this.loginService.auth.isAdmin;
+    }
+    return false;
   }
 }

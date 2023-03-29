@@ -16,7 +16,10 @@ import { LoginService } from '../login/login.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -26,8 +29,8 @@ export class AuthGuard implements CanActivate, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.loginService.isLogging) {
-      return this.loginService.isLogging;
+    if (this.loginService.auth.isLogging) {
+      return this.loginService.auth.isLogging;
     }
     return this.router.navigate(['/login']);
   }

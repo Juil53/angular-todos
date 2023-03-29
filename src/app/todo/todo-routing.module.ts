@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../guard/auth.guard';
-import { TodoGuard } from './guard/todo.guard';
+import { RoleGuard } from './guard/role.guard';
+
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
-import { TodoComponent } from './todo.component';
 
 const routes: Routes = [
-  { path: 'todo', component: TodoComponent },
-  { path: ':id', component: TodoDetailComponent, canActivate: [AuthGuard, TodoGuard] },
+  { path: 'todo/:id', component: TodoDetailComponent, canActivate: [AuthGuard, RoleGuard]},
 ];
 
 @NgModule({

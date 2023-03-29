@@ -4,21 +4,25 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoginService {
-  isLogging: boolean = false;
-  isAdmin: boolean = false;
+  auth = {
+    isLogging: false,
+    isAdmin: false,
+  }
+  // isLogging: boolean = false;
 
   constructor() {}
 
   login(email: string, password: string) {
-    if (email == 'nghia@example.com' && password == 'password') {
-      this.isLogging = true;
-      this.isAdmin = true;
-    }
-    if (email == 'user@example.com' && password == 'password') {
-      this.isLogging = true;
-      this.isAdmin = false;
+    if (email == 'nghia@example.com' && password == '12345') {
+      this.auth.isLogging = true;
+      this.auth.isAdmin = true;
     }
 
-    return this.isLogging
+    if(email == 'user@example.com' && password == '12345') {
+      this.auth.isLogging = true;
+      this.auth.isAdmin = false;
+    }
+
+    return this.auth
   }
 }
