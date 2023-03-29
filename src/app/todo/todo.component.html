@@ -45,6 +45,7 @@
         >
           {{ todo.todo }}
         </label>
+        <fa-icon [icon]="faCircleInfo" class="icon" [routerLink]="['/todo', todo.id]"></fa-icon>
         <fa-icon [icon]="faX" class="icon" (click)="deleteTodo(todo)"></fa-icon>
       </div>
       <div class="section-results">

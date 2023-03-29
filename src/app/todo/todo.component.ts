@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../models/todo.model';
-import { faX } from '@fortawesome/free-solid-svg-icons';
+import { faX, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { TodosService } from '../services/todos.service';
 
 @Component({
@@ -11,6 +11,8 @@ import { TodosService } from '../services/todos.service';
 export class TodoComponent implements OnInit {
   //icons
   faX = faX;
+  faCircleInfo = faCircleInfo;
+
   title = 'angular15-todo';
   todos: Todo[] = [];
   todosNotCompleted: Todo[] = [];

@@ -210,6 +210,10 @@
       font-size: $fs;
       transition: all 200ms;
       color: $light-grayish-blue-normal;
+      &:nth-of-type(1) {
+        margin-right: 10px;
+      }
+
       &:hover {
         color: $dark-grayish-blue;
       }

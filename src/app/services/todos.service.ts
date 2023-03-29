@@ -19,6 +19,10 @@ export class TodosService {
     return this.http.get<Todo[]>(this.TodosApiEndpoint);
   }
 
+  readTodo(id: string): Observable<Todo> {
+    return this.http.get<Todo>(`${this.TodosApiEndpoint}/${id}`);
+  }
+
   updateTodo(todo: Todo): Observable<Todo> {
     return this.http.put<Todo>(`${this.TodosApiEndpoint}/${todo.id}`, todo);
   }
