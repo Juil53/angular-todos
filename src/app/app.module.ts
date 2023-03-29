@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TodoModule } from './todo/todo.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppNavigationComponent } from './app-navigation/app-navigation.component';
@@ -13,14 +13,27 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { LoginComponent } from './login/login.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, AppNavigationComponent],
+  declarations: [
+    AppComponent,
+    AppNavigationComponent,
+    LoginComponent,
+    NotfoundComponent,
+    RegisterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
 
     //Custom Module
     TodoModule,
@@ -30,7 +43,11 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDividerModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

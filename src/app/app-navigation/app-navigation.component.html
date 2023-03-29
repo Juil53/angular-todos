@@ -6,8 +6,12 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>My Dashboard</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">TODO APP</a>
-      <a mat-list-item href="#">LOGIN</a>
+      <a mat-list-item routerLink="todo">TODO APP</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="login">LOGIN</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="register">REGISTER</a>
+      <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -24,8 +28,7 @@
       <span>Dinh Van Huu Nghia</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <!-- //ROUTER OUTLET HERE -->
-    <app-todo></app-todo>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
   
 </mat-sidenav-container>

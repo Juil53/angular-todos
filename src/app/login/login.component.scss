@@ -1,0 +1,15 @@
+@import '../../shared/variables';
+
+.login-form {
+  margin: 40px auto;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background:$light-gray ;
+}
+
+mat-form-field {
+  width: 100%;
+}
