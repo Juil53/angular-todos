@@ -14,7 +14,7 @@ export class RegisterComponent {
   };
 
   register(userForm: NgForm) {
-    console.log(userForm)
+    console.log(userForm.value)
     userForm.resetForm();
   }
 }
