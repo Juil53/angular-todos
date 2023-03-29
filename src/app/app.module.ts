@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { TodoModule } from './todo/todo.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TodoModule } from './todo/todo.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppNavigationComponent } from './app-navigation/app-navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -30,13 +30,16 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     BrowserModule,
+    //Custom Module
+    TodoModule,
+    
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
 
-    //Custom Module
-    TodoModule,
+
+    //Material Module
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
