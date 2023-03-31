@@ -12,6 +12,7 @@ import { LoginService } from 'src/app/login/login.service';
   providedIn: 'root',
 })
 export class RoleGuard implements CanActivate {
+  json_auth: any;
   constructor(private loginService: LoginService) {}
 
   canActivate(
@@ -22,9 +23,13 @@ export class RoleGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.loginService.auth.isAdmin && this.loginService.auth.isLogging) {
-      console.log(this.loginService.auth.isAdmin);
-      return this.loginService.auth.isAdmin;
+    this.json_auth = localStorage.getItem('auth');
+    if (this.json_auth) {
+      if (JSON.parse(this.json_auth).isAdmin) {
+        return JSON.parse(this.json_auth).isAdmin;
+      } else {
+        alert('Admin Only');
+      }
     }
     return false;
   }

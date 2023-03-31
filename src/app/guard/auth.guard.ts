@@ -16,10 +16,8 @@ import { LoginService } from '../login/login.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  constructor(
-    private loginService: LoginService,
-    private router: Router,
-  ) {}
+  json_auth: any;
+  constructor(private loginService: LoginService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -29,9 +27,11 @@ export class AuthGuard implements CanActivate, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.loginService.auth.isLogging) {
-      return this.loginService.auth.isLogging;
+    this.json_auth = localStorage.getItem('auth');
+    if (this.json_auth) {
+      return JSON.parse(this.json_auth).isLogging;
     }
+    alert('Login to access this page!');
     return this.router.navigate(['/login']);
   }
 
