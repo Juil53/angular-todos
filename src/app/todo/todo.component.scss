@@ -144,67 +144,6 @@
       margin-top: 30px;
     }
 
-    .section-todos {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 20px 20px;
-      font-size: $fs;
-      border-radius: 4px;
-      border-bottom: 1px solid $light-grayish-blue;
-      background-color: #fff;
-      font-size: $fs;
-      position: relative;
-
-      label {
-        width: 100%;
-        padding: 0 30px;
-        cursor: pointer;
-
-        &:before {
-          content: "";
-          width: 20px;
-          height: 20px;
-          border: 1px solid #d1d7dc;
-          background-color: #fff;
-          background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          border-radius: 50%;
-          position: absolute;
-          left: 10px;
-          top: 50%;
-          transform: translateY(-50%);
-          transition: all 200ms ease-in;
-          cursor: pointer;
-          z-index: 2;
-        }
-      }
-
-      input:checked ~ label {
-        color: $light-grayish-blue-normal;
-        text-decoration: line-through;
-        &:before {
-          background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73));
-        }
-      }
-
-      input {
-        visibility: hidden;
-      }
-    }
-
-    .section-results {
-      color: $dark-grayish-blue;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 15px;
-      border-radius: 4px;
-      background-color: #fff;
-    }
-
     .icon {
       cursor: pointer;
       font-size: $fs;
@@ -216,19 +155,6 @@
 
       &:hover {
         color: $dark-grayish-blue;
-      }
-    }
-
-    .btn-clear {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 16px;
-      background-color: $light-gray;
-      color: $dark-grayish-blue;
-      cursor: pointer;
-      transition: all 200ms;
-      &:hover {
-        color: $very-dark-blue;
       }
     }
   }

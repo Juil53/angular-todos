@@ -31,27 +31,7 @@
     <h3 style="text-align: center" *ngIf="isLoading">{{ status }}</h3>
 
     <div class="section-content" *ngIf="todos && !isLoading">
-      <div class="section-todos" *ngFor="let todo of todos">
-        <input
-          type="checkbox"
-          name="todo-checkbox"
-          id="{{ todo.id }}"
-          [checked]="todo.isCompleted"
-        />
-        <label
-          for="{{ todo.id }}"
-          class="label-checkbox"
-          (click)="updateTodo(todo)"
-        >
-          {{ todo.todo }}
-        </label>
-        <fa-icon [icon]="faCircleInfo" class="icon" [routerLink]="['/todo', todo.id]"></fa-icon>
-        <fa-icon [icon]="faX" class="icon" (click)="deleteTodo(todo)"></fa-icon>
-      </div>
-      <div class="section-results">
-        <p>{{todosNotCompleted.length}} items left</p>
-        <button (click)="clearAllCompleted()" class="btn-clear">Clear Completed</button>
-      </div>
+      <app-todo-detail [todos]="todos"></app-todo-detail>
     </div>
   </div>
 </div>

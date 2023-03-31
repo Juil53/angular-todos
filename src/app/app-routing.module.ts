@@ -9,7 +9,6 @@ import { TodoComponent } from './todo/todo.component';
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'todo', component: TodoComponent, canActivate: [AuthGuard]  },
 
   //Redirect
   { path: '', redirectTo: '/login', pathMatch: 'full' },
