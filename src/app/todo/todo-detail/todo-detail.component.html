@@ -5,14 +5,10 @@
     id="{{ todo.id }}"
     [checked]="todo.isCompleted"
   />
-  <label
-    for="{{ todo.id }}"
-    class="label-checkbox"
-    (click)="updateTodo(todo)"
-  >
+  <label for="{{ todo.id }}" class="label-checkbox" (click)="updateTodo(todo)">
     {{ todo.todo }}
   </label>
-  <fa-icon [icon]="faCircleInfo" class="icon" [routerLink]="['/todo', todo.id]"></fa-icon>
+  <fa-icon [icon]="faCircleInfo" class="icon" [routerLink]="['/todo', todo.id]" [state]="{todo}"></fa-icon>
   <fa-icon [icon]="faX" class="icon" (click)="deleteTodo(todo)"></fa-icon>
 </div>
 
