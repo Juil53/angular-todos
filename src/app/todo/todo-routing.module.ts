@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../guard/auth.guard';
 import { RoleGuard } from './guard/role.guard';
 import { TodoCardComponent } from './todo-card/todo-card.component';
-import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { TodoComponent } from './todo.component';
 
 const routes: Routes = [

@@ -27,4 +27,10 @@ export class LoginService {
 
     return this.auth
   }
+
+  logout() {
+    localStorage.removeItem('auth')
+    this.auth.isLogging = false;
+    this.auth.isAdmin = false;
+  }
 }
