@@ -157,5 +157,14 @@
         color: $dark-grayish-blue;
       }
     }
+
+    .search {
+      margin-top: 20px;
+      background-color: $light-gray;
+      input {
+        background-color: $light-gray;
+        font-size: 16px;
+      }
+    }
   }
 }

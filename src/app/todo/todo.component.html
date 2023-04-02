@@ -14,13 +14,28 @@
         type="text"
         name="todo-content"
         id="todo-content"
-        placeholder="Enter your task..."
+        placeholder="Create your task..."
         #todo
         (keyup.enter)="createTodo(todo)"
       />
       <fa-icon [icon]="faX" class="icon"></fa-icon>
     </div>
 
+    <div class="section-input search">
+      <input
+        type="text"
+        name="todo-search"
+        placeholder="Type something to search..."
+        [(ngModel)]="keyword"
+      />
+      <fa-icon [icon]="faX" class="icon"></fa-icon>
+    </div>
+
+    <div class="section-content" *ngIf="todos && !isLoading">
+      <app-todo-detail [todos]="todos" [keyword]="keyword"></app-todo-detail>
+    </div>
+
+    <!-- Loading -->
     <div *ngIf="isLoading" class="loading">
       <span></span>
       <span></span>
@@ -29,9 +44,5 @@
       <span></span>
     </div>
     <h3 style="text-align: center" *ngIf="isLoading">{{ status }}</h3>
-
-    <div class="section-content" *ngIf="todos && !isLoading">
-      <app-todo-detail [todos]="todos"></app-todo-detail>
-    </div>
   </div>
 </div>

@@ -17,6 +17,7 @@ export class TodoComponent implements OnInit {
   newTodo!: Todo;
   isLoading: boolean = false;
   status: string = '';
+  keyword: string = '';
 
   @ViewChild(TodoDetailComponent) childComp: any;
 
@@ -51,38 +52,7 @@ export class TodoComponent implements OnInit {
       this.todos = [...this.todos, res];
       this.todosNotCompleted = this.todos;
     });
-
     //clear Input field
     todo.value = '';
   }
-
-  // updateTodo(todo: Todo) {
-  //   //for UI performance
-  //   const todoIndex = this.todos.findIndex((task) => task.todo === todo.todo);
-  //   const updatedTodo = { ...todo, isCompleted: !todo.isCompleted };
-  //   this.todos.splice(todoIndex, 1, updatedTodo);
-
-  //   //update Data
-  //   if (todoIndex != -1) {
-  //     this.todoService.updateTodo(updatedTodo).subscribe((res) => {
-  //       this.todosNotCompleted = this.todos.filter((todo) => !todo.isCompleted);
-  //     });
-  //   }
-  // }
-
-  // deleteTodo(todo: Todo) {
-  //   this.status = 'Deleting';
-  //   this.isLoading = true;
-  //   const todoSelected = this.todos.find((task) => task.todo === todo.todo);
-  //   this.todos = this.todos.filter((task) => task !== todoSelected);
-
-  //   if (todoSelected) {
-  //     this.todoService.deleteTodo(todoSelected).subscribe((res) => {
-  //       this.status = '';
-  //       this.isLoading = false;
-  //     });
-  //   } else {
-  //     this.todos;
-  //   }
-  // }
 }

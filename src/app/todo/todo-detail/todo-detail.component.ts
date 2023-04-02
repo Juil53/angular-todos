@@ -17,11 +17,13 @@ export class TodoDetailComponent implements OnInit {
   status: string = '';
 
   @Input() todos: Todo[] = [];
+  @Input() keyword!: string;
 
   constructor(private todoService: TodosService) {}
 
   ngOnInit(): void {
     this.todosNotCompleted = this.todos.filter((todo) => !todo.isCompleted);
+    console.log(this.keyword)
   }
 
   updateTodo(todo: Todo) {
