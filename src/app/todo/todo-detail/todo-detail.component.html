@@ -1,4 +1,4 @@
-<div class="section-todos" *ngFor="let todo of todos | filter: keyword">
+<div class="section-todos" *ngFor="let todo of filterTodos | filter : keyword">
   <input
     type="checkbox"
     name="todo-checkbox"
@@ -8,12 +8,34 @@
   <label for="{{ todo.id }}" class="label-checkbox" (click)="updateTodo(todo)">
     {{ todo.todo }}
   </label>
-  <fa-icon [icon]="faCircleInfo" class="icon" [routerLink]="['/todo', todo.id]" [state]="{todo}"></fa-icon>
+  <fa-icon
+    [icon]="faCircleInfo"
+    class="icon"
+    [routerLink]="['/todo', todo.id]"
+    [state]="{todo}"
+  ></fa-icon>
   <fa-icon [icon]="faX" class="icon" (click)="deleteTodo(todo)"></fa-icon>
 </div>
 
 <div class="section-results">
   <p>{{ todosNotCompleted.length }} items left</p>
+  <ul class="section-filters">
+    <li [class.isSelected]="isSelected == 'all'" (click)="selectFilter('all')">
+      All
+    </li>
+    <li
+      [class.isSelected]="isSelected == 'todo'"
+      (click)="selectFilter('todo')"
+    >
+      Todo
+    </li>
+    <li
+      [class.isSelected]="isSelected == 'completed'"
+      (click)="selectFilter('completed')"
+    >
+      Completed
+    </li>
+  </ul>
   <button (click)="clearAllCompleted()" class="btn-clear">
     Clear Completed
   </button>

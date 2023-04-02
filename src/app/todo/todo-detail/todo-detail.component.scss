@@ -1,4 +1,4 @@
-@import '../../../shared/variables';
+@import "../../../shared/variables";
 
 .section-todos {
   width: 100%;
@@ -85,5 +85,29 @@
     &:hover {
       color: $very-dark-blue;
     }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    display: flex;
+    li {
+      list-style-type: none;
+      color: $light-grayish-blue;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: all 200ms;
+      &:hover {
+        color: $dark-grayish-blue;
+      }
+    }
+  }
+
+  .isSelected {
+    font-size: 14px;
+    font-weight: 500;
+    color: $very-dark-blue !important;
   }
 }

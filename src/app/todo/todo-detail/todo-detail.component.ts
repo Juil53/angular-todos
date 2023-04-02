@@ -13,8 +13,10 @@ export class TodoDetailComponent implements OnInit {
   faCircleInfo = faCircleInfo;
   todo!: Todo;
   todosNotCompleted: Todo[] = [];
+  filterTodos: Todo[] = [];
   isLoading: boolean = false;
   status: string = '';
+  isSelected: string = 'all';
 
   @Input() todos: Todo[] = [];
   @Input() keyword!: string;
@@ -23,7 +25,7 @@ export class TodoDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.todosNotCompleted = this.todos.filter((todo) => !todo.isCompleted);
-    console.log(this.keyword)
+    this.filterTodos = this.todos;
   }
 
   updateTodo(todo: Todo) {
@@ -70,5 +72,25 @@ export class TodoDetailComponent implements OnInit {
 
     this.isLoading = false;
     this.status = '';
+  }
+
+  selectFilter(option: string) {
+    console.log(option);
+    switch (option) {
+      case 'all':
+        return (this.filterTodos = this.todos), (this.isSelected = 'all');
+      case 'todo':
+        return (
+          (this.filterTodos = this.todos.filter((todo) => !todo.isCompleted)),
+          (this.isSelected = 'todo')
+        );
+      case 'completed':
+        return (
+          (this.filterTodos = this.todos.filter((todo) => todo.isCompleted)),
+          (this.isSelected = 'completed')
+        );
+      default:
+        return this.filterTodos;
+    }
   }
 }
