@@ -1,5 +1,5 @@
 <div>
-  <form
+  <!-- <form
     class="register-form"
     #userForm="ngForm"
     (ngSubmit)="register(userForm)"
@@ -48,8 +48,27 @@
     >
       Register
     </button>
-  </form>
+  </form> -->
 
-  <p>{{ user.email }}</p>
-  <p>{{ user.password }}</p>
+  <form [formGroup]="form" class="register-form" (ngSubmit)="onSubmit()">
+    <h3>Reactive Form</h3>
+    <mat-form-field apperance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" />
+      <mat-hint *ngIf="email.touched && email.invalid" class="text-error">
+        <span *ngIf="email.errors?.required">Email required!</span>
+        <span *ngIf="email.errors?.email">Invalid Email</span>
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field apperance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" />
+      <mat-hint *ngIf="password.touched && password.invalid" class="text-error">
+        Password required 5 chars!
+      </mat-hint>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Register</button>
+  </form>
 </div>

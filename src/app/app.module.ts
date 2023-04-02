@@ -37,7 +37,6 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ReactiveFormsModule,
 
-
     //Material Module
     BrowserAnimationsModule,
     LayoutModule,
