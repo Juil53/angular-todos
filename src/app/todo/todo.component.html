@@ -32,7 +32,7 @@
     </div>
 
     <div class="section-content" *ngIf="todos && !isLoading">
-      <app-todo-detail [todos]="todos" [keyword]="keyword"></app-todo-detail>
+      <app-todo-detail [todos]="todos" [keyword]="keyword" [clearAll]="clearAllCompleted"></app-todo-detail>
     </div>
 
     <!-- Loading -->

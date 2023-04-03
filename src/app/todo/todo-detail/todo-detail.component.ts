@@ -12,20 +12,19 @@ export class TodoDetailComponent implements OnInit {
   //icons
   faX = faX;
   faCircleInfo = faCircleInfo;
+
   todo!: Todo;
-  todosNotCompleted: Todo[] = [];
-  // filterTodos: Todo[] = [];
+  todosNotCompleted: Todo[] = [];  
   isSelected: string = 'all';
 
   @Input() todos: Todo[] = [];
   @Input() keyword!: string;
+  @Input() clearAll: () => void;
 
   constructor(private todoService: TodosService) {}
 
   ngOnInit(): void {
     this.todosNotCompleted = this.todos.filter((todo) => !todo.isCompleted);
-    this.todos;
-    console.log('init', this.todos);
   }
 
   updateTodo(todo: Todo) {
@@ -51,30 +50,22 @@ export class TodoDetailComponent implements OnInit {
     }
   }
 
-  clearAllCompleted() {
-    const completedTodos = this.todos.filter((todo) => todo.isCompleted);
-
-    forkJoin(
-      completedTodos.map((todo) => this.todoService.deleteTodo(todo))
-    ).subscribe({
-      next: (value) => this.todos = value,
-      complete: () => console.log('This is how it ends!'),
-    });
-  }
-
   selectFilter(option: string) {
     switch (option) {
       case 'all':
-        return this.todos, (this.isSelected = 'all');
+        return (
+          this.todos,
+          this.isSelected = 'all'
+        );
       case 'todo':
         return (
-          (this.todos = this.todos.filter((todo) => !todo.isCompleted)),
-          (this.isSelected = 'todo')
+          this.todos.filter((todo) => !todo.isCompleted),
+          this.isSelected = 'todo'
         );
       case 'completed':
         return (
-          (this.todos = this.todos.filter((todo) => todo.isCompleted)),
-          (this.isSelected = 'completed')
+          this.todos.filter((todo) => todo.isCompleted),
+          this.isSelected = 'completed'
         );
       default:
         return this.todos;
