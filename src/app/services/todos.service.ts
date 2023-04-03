@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from '../models/todo.model';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,4 +30,5 @@ export class TodosService {
   deleteTodo(todo: Todo): Observable<Todo> {
     return this.http.delete<Todo>(`${this.TodosApiEndpoint}/${todo.id}`);
   }
+
 }

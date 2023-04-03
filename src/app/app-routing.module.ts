@@ -4,7 +4,6 @@ import { AuthGuard } from './guard/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RegisterComponent } from './register/register.component';
-import { TodoComponent } from './todo/todo.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },

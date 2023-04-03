@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Todo } from 'src/app/models/todo.model';
 import { TodosService } from 'src/app/services/todos.service';
 import { faX, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { filter, forkJoin } from 'rxjs';
 @Component({
   selector: 'app-todo-detail',
   templateUrl: './todo-detail.component.html',
@@ -13,7 +14,7 @@ export class TodoDetailComponent implements OnInit {
   faCircleInfo = faCircleInfo;
   todo!: Todo;
   todosNotCompleted: Todo[] = [];
-  filterTodos: Todo[] = [];
+  // filterTodos: Todo[] = [];
   isSelected: string = 'all';
 
   @Input() todos: Todo[] = [];
@@ -23,8 +24,8 @@ export class TodoDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.todosNotCompleted = this.todos.filter((todo) => !todo.isCompleted);
-    this.filterTodos = this.todos;
-    console.log(this.todos)
+    this.todos;
+    console.log('init', this.todos);
   }
 
   updateTodo(todo: Todo) {
@@ -41,45 +42,42 @@ export class TodoDetailComponent implements OnInit {
 
   deleteTodo(todo: Todo) {
     const todoSelected = this.todos.find((task) => task.todo === todo.todo);
-    this.filterTodos = this.todos.filter((task) => task !== todoSelected);
+    this.todos = this.todos.filter((task) => task !== todoSelected);
 
     if (todoSelected) {
       this.todoService.deleteTodo(todoSelected).subscribe((res) => {
-        console.log(res)
+        console.log(res);
       });
     }
   }
 
   clearAllCompleted() {
-    //for UI performance
-    this.filterTodos = this.todos.filter((todo) => !todo.isCompleted);
     const completedTodos = this.todos.filter((todo) => todo.isCompleted);
 
-    //loop and send delete request
-    completedTodos.map((todo) => {
-      this.todoService.deleteTodo(todo).subscribe((res) => {
-        console.log(res)
-      });
+    forkJoin(
+      completedTodos.map((todo) => this.todoService.deleteTodo(todo))
+    ).subscribe({
+      next: (value) => this.todos = value,
+      complete: () => console.log('This is how it ends!'),
     });
   }
 
   selectFilter(option: string) {
-    console.log(option);
     switch (option) {
       case 'all':
-        return (this.filterTodos = this.todos), (this.isSelected = 'all');
+        return this.todos, (this.isSelected = 'all');
       case 'todo':
         return (
-          (this.filterTodos = this.todos.filter((todo) => !todo.isCompleted)),
+          (this.todos = this.todos.filter((todo) => !todo.isCompleted)),
           (this.isSelected = 'todo')
         );
       case 'completed':
         return (
-          (this.filterTodos = this.todos.filter((todo) => todo.isCompleted)),
+          (this.todos = this.todos.filter((todo) => todo.isCompleted)),
           (this.isSelected = 'completed')
         );
       default:
-        return this.filterTodos;
+        return this.todos;
     }
   }
 }
