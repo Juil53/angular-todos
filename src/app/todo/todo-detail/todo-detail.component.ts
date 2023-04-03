@@ -14,8 +14,6 @@ export class TodoDetailComponent implements OnInit {
   todo!: Todo;
   todosNotCompleted: Todo[] = [];
   filterTodos: Todo[] = [];
-  isLoading: boolean = false;
-  status: string = '';
   isSelected: string = 'all';
 
   @Input() todos: Todo[] = [];
@@ -26,6 +24,7 @@ export class TodoDetailComponent implements OnInit {
   ngOnInit(): void {
     this.todosNotCompleted = this.todos.filter((todo) => !todo.isCompleted);
     this.filterTodos = this.todos;
+    console.log(this.todos)
   }
 
   updateTodo(todo: Todo) {
@@ -41,37 +40,27 @@ export class TodoDetailComponent implements OnInit {
   }
 
   deleteTodo(todo: Todo) {
-    this.status = 'Deleting';
-    this.isLoading = true;
     const todoSelected = this.todos.find((task) => task.todo === todo.todo);
-    this.todos = this.todos.filter((task) => task !== todoSelected);
+    this.filterTodos = this.todos.filter((task) => task !== todoSelected);
 
     if (todoSelected) {
       this.todoService.deleteTodo(todoSelected).subscribe((res) => {
-        this.status = '';
-        this.isLoading = false;
+        console.log(res)
       });
-    } else {
-      this.todos;
     }
   }
 
   clearAllCompleted() {
-    this.isLoading = true;
-    this.status = 'Deleting...';
     //for UI performance
-    const completedTasks = this.todos.filter((todo) => todo.isCompleted);
-    this.todos = this.todos.filter((todo) => !completedTasks.includes(todo));
+    this.filterTodos = this.todos.filter((todo) => !todo.isCompleted);
+    const completedTodos = this.todos.filter((todo) => todo.isCompleted);
 
     //loop and send delete request
-    completedTasks.map((task) => {
-      this.todoService.deleteTodo(task).subscribe((res) => {
-        // console.log(res)
+    completedTodos.map((todo) => {
+      this.todoService.deleteTodo(todo).subscribe((res) => {
+        console.log(res)
       });
     });
-
-    this.isLoading = false;
-    this.status = '';
   }
 
   selectFilter(option: string) {
