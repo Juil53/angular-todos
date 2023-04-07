@@ -65,8 +65,9 @@ export class TodoDetailComponent implements OnInit {
     forkJoin(
       completedTodos.map((todo) => this.todoService.deleteTodo(todo))
     ).subscribe({
-      next: (value) => this.todos = this.todos.filter(todo => todo.isCompleted == false),
-      complete: () => this.isLoading = false,
+      next: (value) =>
+        (this.todos = this.todos.filter((todo) => todo.isCompleted == false)),
+      complete: () => (this.isLoading = false),
     });
   }
 

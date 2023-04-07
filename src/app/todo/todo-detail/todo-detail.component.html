@@ -6,7 +6,11 @@
       id="{{ todo.id }}"
       [checked]="todo.isCompleted"
     />
-    <label for="{{ todo.id }}" class="label-checkbox" (click)="updateTodo(todo)">
+    <label
+      for="{{ todo.id }}"
+      class="label-checkbox"
+      (click)="updateTodo(todo)"
+    >
       {{ todo.todo }}
     </label>
     <fa-icon
@@ -17,38 +21,33 @@
     ></fa-icon>
     <fa-icon [icon]="faX" class="icon" (click)="deleteTodo(todo)"></fa-icon>
   </div>
-</div>
-
-<div class="section-results">
-  <p>{{ todosNotCompleted.length }} items left</p>
-  <ul class="section-filters">
-    <li [class.isSelected]="isSelected == 'all'" (click)="selectFilter('all')">
-      All
-    </li>
-    <li
-      [class.isSelected]="isSelected == 'todo'"
-      (click)="selectFilter('todo')"
-    >
-      Todo
-    </li>
-    <li
-      [class.isSelected]="isSelected == 'completed'"
-      (click)="selectFilter('completed')"
-    >
-      Completed
-    </li>
-  </ul>
-  <button (click)="clearAllCompleted()" class="btn-clear">
-    Clear Completed
-  </button>
+  <div class="section-results">
+    <p>{{ todosNotCompleted.length }} items left</p>
+    <ul class="section-filters">
+      <li
+        [class.isSelected]="isSelected == 'all'"
+        (click)="selectFilter('all')"
+      >
+        All
+      </li>
+      <li
+        [class.isSelected]="isSelected == 'todo'"
+        (click)="selectFilter('todo')"
+      >
+        Todo
+      </li>
+      <li
+        [class.isSelected]="isSelected == 'completed'"
+        (click)="selectFilter('completed')"
+      >
+        Completed
+      </li>
+    </ul>
+    <button (click)="clearAllCompleted()" class="btn-clear">
+      Clear Completed
+    </button>
+  </div>
 </div>
 
 <!-- Loading -->
-<div *ngIf="isLoading" class="loading">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-<h3 style="text-align: center" *ngIf="isLoading">Loading...</h3>
+<app-loading [loading]="isLoading"></app-loading>

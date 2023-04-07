@@ -8,7 +8,6 @@ export class LoginService {
     isLogging: false,
     isAdmin: false,
   }
-  // isLogging: boolean = false;
 
   constructor() {}
 
