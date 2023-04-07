@@ -10,7 +10,7 @@ import { forkJoin } from 'rxjs';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss'],
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
   faX = faX;
   title = 'angular15-todo';
   todos: Todo[] = [];
@@ -22,21 +22,7 @@ export class TodoComponent implements OnInit {
 
   @ViewChild(TodoDetailComponent) childComp: any;
 
-  constructor(private todoService: TodosService) {
-    this.isLoading = true;
-    this.status = 'Loading...';
-  }
-
-  ngOnInit(): void {
-    this.getTodo();
-  }
-
-  getTodo() {
-    this.todoService.readAllTodo().subscribe((data) => {
-      this.isLoading = false;
-      this.todos = data;
-    });
-  }
+  constructor(private todoService: TodosService) {}
 
   createTodo(todo: HTMLInputElement) {
     this.status = 'Creating new Task';
@@ -55,19 +41,5 @@ export class TodoComponent implements OnInit {
     });
     //clear Input field
     todo.value = '';
-  }
-
-  clearAllCompleted() {
-    const completedTodos = this.todos.filter((todo) => todo.isCompleted);
-
-    forkJoin(
-      completedTodos.map((todo) => this.todoService.deleteTodo(todo))
-    ).subscribe({
-      next: (value) => console.log(value),
-      complete: () => {
-        this.ngOnInit()
-        console.log('Clear all completed');
-      },
-    });
   }
 }

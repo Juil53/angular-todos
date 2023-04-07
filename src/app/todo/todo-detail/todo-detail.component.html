@@ -1,20 +1,22 @@
-<div class="section-todos" *ngFor="let todo of todos | filter : keyword">
-  <input
-    type="checkbox"
-    name="todo-checkbox"
-    id="{{ todo.id }}"
-    [checked]="todo.isCompleted"
-  />
-  <label for="{{ todo.id }}" class="label-checkbox" (click)="updateTodo(todo)">
-    {{ todo.todo }}
-  </label>
-  <fa-icon
-    [icon]="faCircleInfo"
-    class="icon"
-    [routerLink]="['/todo', todo.id]"
-    [state]="{todo}"
-  ></fa-icon>
-  <fa-icon [icon]="faX" class="icon" (click)="deleteTodo(todo)"></fa-icon>
+<div *ngIf="!isLoading">
+  <div class="section-todos" *ngFor="let todo of todos | filter : keyword">
+    <input
+      type="checkbox"
+      name="todo-checkbox"
+      id="{{ todo.id }}"
+      [checked]="todo.isCompleted"
+    />
+    <label for="{{ todo.id }}" class="label-checkbox" (click)="updateTodo(todo)">
+      {{ todo.todo }}
+    </label>
+    <fa-icon
+      [icon]="faCircleInfo"
+      class="icon"
+      [routerLink]="['/todo', todo.id]"
+      [state]="{todo}"
+    ></fa-icon>
+    <fa-icon [icon]="faX" class="icon" (click)="deleteTodo(todo)"></fa-icon>
+  </div>
 </div>
 
 <div class="section-results">
@@ -36,7 +38,17 @@
       Completed
     </li>
   </ul>
-  <button (click)="clearAll()" class="btn-clear">
+  <button (click)="clearAllCompleted()" class="btn-clear">
     Clear Completed
   </button>
 </div>
+
+<!-- Loading -->
+<div *ngIf="isLoading" class="loading">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<h3 style="text-align: center" *ngIf="isLoading">Loading...</h3>

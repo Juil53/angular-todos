@@ -31,18 +31,8 @@
       <fa-icon [icon]="faX" class="icon"></fa-icon>
     </div>
 
-    <div class="section-content" *ngIf="todos && !isLoading">
-      <app-todo-detail [todos]="todos" [keyword]="keyword" [clearAll]="clearAllCompleted"></app-todo-detail>
+    <div class="section-content" *ngIf="!isLoading">
+      <app-todo-detail [keyword]="keyword"></app-todo-detail>
     </div>
-
-    <!-- Loading -->
-    <div *ngIf="isLoading" class="loading">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <h3 style="text-align: center" *ngIf="isLoading">{{ status }}</h3>
   </div>
 </div>
