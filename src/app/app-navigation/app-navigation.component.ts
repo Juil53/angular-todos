@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './app-navigation.component.html',
   styleUrls: ['./app-navigation.component.scss'],
 })
-export class AppNavigationComponent implements OnInit {
+export class AppNavigationComponent {
   isLogging!: boolean;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -26,12 +26,8 @@ export class AppNavigationComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    if (localStorage.getItem('auth')) {
-      this.isLogging = true;
-    } else {
-      this.isLogging = false;
-    }
+  isLogin() {
+    return localStorage.getItem('auth')
   }
 
   logout() {

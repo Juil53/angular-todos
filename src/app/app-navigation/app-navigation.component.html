@@ -8,8 +8,8 @@
     <mat-nav-list>
       <a mat-list-item routerLink="todo">TODO APP</a>
       <mat-divider></mat-divider>
-      <a mat-list-item *ngIf="!isLogging" routerLink="login">LOGIN</a>
-      <a mat-list-item *ngIf="isLogging" (click)="logout()">LOGOUT</a>
+      <a mat-list-item *ngIf="!isLogin()" routerLink="login">LOGIN</a>
+      <a mat-list-item *ngIf="isLogin()" (click)="logout()">LOGOUT</a>
       <mat-divider></mat-divider>
       <a mat-list-item routerLink="register">REGISTER</a>
       <mat-divider></mat-divider>
