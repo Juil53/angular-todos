@@ -1,0 +1,18 @@
+@import "../../shared/variables";
+
+.container {
+    background-color: $dark-grayish-blue;
+    text-align: center;
+    padding: 20px 0;
+
+    input,
+    button {
+        height: 30px;
+        width: 200px;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 50px;
+    }
+}

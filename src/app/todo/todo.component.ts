@@ -3,7 +3,6 @@ import { Todo } from '../models/todo.model';
 import { TodosService } from '../services/todos.service';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-todo',

@@ -8,8 +8,8 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  email!: string;
-  password!: string;
+  email: string = 'example@example.com';
+  password: string = 'password';
 
   constructor(private router: Router, private loginService: LoginService) {}
 

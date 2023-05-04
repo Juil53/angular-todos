@@ -19,7 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { RegisterComponent } from './register/register.component';
-import { LoadingComponent } from './loading/loading.component';
+import { LifecycleComponent } from './lifecycle/lifecycle.component';
+import { DemoComponent } from './demo/demo.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,8 @@ import { LoadingComponent } from './loading/loading.component';
     LoginComponent,
     NotfoundComponent,
     RegisterComponent,
+    LifecycleComponent,
+    DemoComponent,
   ],
   imports: [
     BrowserModule,

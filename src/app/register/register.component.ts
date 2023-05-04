@@ -41,17 +41,8 @@ export class RegisterComponent {
     console.log(this.form.value)
   }
 
-
-
-
-
-
-
-
-
-
-  register(userForm: NgForm) {
-    console.log(userForm.value)
-    userForm.resetForm();
-  }
+  // register(userForm: NgForm) {
+  //   console.log(userForm.value)
+  //   userForm.resetForm();
+  // }
 }

@@ -1,0 +1,13 @@
+<div class="container">
+  <input type="text" name="" id="" #input />
+  <button (click)="onSubmit(input)">Submit</button>
+
+  <!-- Pass value from input at Parent comp to Child comp -->
+  <app-demo [inputEl]="inputFromParent">
+    <h3>this is projected Content {{ inputFromParent }}</h3>
+  </app-demo>
+</div>
+
+<div>
+  <input type="text" [(ngModel)]="test" (keyup.enter)="onKeyUp()" />
+</div>
