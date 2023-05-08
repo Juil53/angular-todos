@@ -33,10 +33,10 @@ export class TodoComponent {
       isCompleted: false,
       createdAt: new Date(),
     };
-    this.todoService.createTodo(this.newTodo).subscribe((res) => {
+    this.todoService.createTodo(this.newTodo).subscribe((todo) => {
       this.status = '';
       this.isLoading = false;
-      this.todos = [...this.todos, res];
+      this.todos = [...this.todos, todo];
       this.todosNotCompleted = this.todos;
     });
     //clear Input field

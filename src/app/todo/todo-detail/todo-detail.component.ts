@@ -39,9 +39,9 @@ export class TodoDetailComponent implements OnInit {
     });
   }
 
-  updateTodo(todo: Todo) {
-    const todoIndex = this.todos.findIndex((task) => task.todo === todo.todo);
-    const updatedTodo = { ...todo, isCompleted: !todo.isCompleted };
+  updateTodo(selectedTodo: Todo) {
+    const todoIndex = this.todos.findIndex((todo) => todo.id === selectedTodo.id);
+    const updatedTodo = { ...selectedTodo, isCompleted: !selectedTodo.isCompleted };
     this.todos.splice(todoIndex, 1, updatedTodo);
 
     if (todoIndex != -1) {
@@ -68,8 +68,10 @@ export class TodoDetailComponent implements OnInit {
       completedTodos.map((todo) => this.todoService.deleteTodo(todo))
     ).subscribe({
       next: (value) =>
-        (this.todos = this.todos.filter((todo) => todo.isCompleted == false)),
-      complete: () => (this.isLoading = false),
+        (this.filteredTodos = this.todos.filter((todo) => todo.isCompleted == false)),
+      complete: () => {
+        this.isLoading = false
+      },
     });
   }
 
