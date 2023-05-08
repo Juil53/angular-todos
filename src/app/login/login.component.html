@@ -2,17 +2,33 @@
   <h3>L O G I N</h3>
   <mat-form-field apperance="fill">
     <mat-label>Email</mat-label>
-    <input matInput required [(ngModel)]="email" />
-    <mat-hint>Valid email required!</mat-hint>
+    <input
+      matInput
+      required
+      [(ngModel)]="loginRequest.email"
+      name="email"
+      #email="ngModel"
+    />
+    <mat-hint *ngIf="email.touched && email.invalid" class="text-error">
+      <span *ngIf="email.errors?.['required']">Email required!</span>
+      <span *ngIf="email.errors?.['email']">Invalid Email</span>
+    </mat-hint>
   </mat-form-field>
 
   <mat-form-field apperance="fill">
     <mat-label>Password</mat-label>
-    <input type="password" matInput required [(ngModel)]="password" />
-    <mat-hint>Min 8 characters</mat-hint>
+    <input
+      type="password"
+      name="password"
+      #password="ngModel"
+      [(ngModel)]="loginRequest.password"
+      matInput
+      required
+    />
+    <mat-hint *ngIf="password.touched && password.invalid" class="text-error">
+      <span *ngIf="password.errors?.['required']">Password required!</span>
+    </mat-hint>
   </mat-form-field>
 
   <button mat-raised-button color="primary" (click)="login()">Login</button>
-  <p>{{ email }}</p>
-  <p>{{ password }}</p>
 </div>

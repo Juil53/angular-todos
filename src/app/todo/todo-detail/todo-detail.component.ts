@@ -1,22 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Todo } from 'src/app/models/todo.model';
-import { TodosService } from 'src/app/services/todos.service';
-import { faX, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import { forkJoin } from 'rxjs';
+import { Component, OnInit, Input } from "@angular/core";
+import { Todo } from "src/app/models/todo.model";
+import { TodosService } from "src/app/services/todos.service";
+import { faX, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { forkJoin } from "rxjs";
 @Component({
-  selector: 'app-todo-detail',
-  templateUrl: './todo-detail.component.html',
-  styleUrls: ['./todo-detail.component.scss'],
+  selector: "app-todo-detail",
+  templateUrl: "./todo-detail.component.html",
+  styleUrls: ["./todo-detail.component.scss"],
 })
 export class TodoDetailComponent implements OnInit {
   //icons
   faX = faX;
   faCircleInfo = faCircleInfo;
   isLoading: boolean = false;
-  todos: Todo[] = [];
   todo!: Todo;
+  todos: Todo[] = [];
   todosNotCompleted: Todo[] = [];
-  isSelected: string = 'all';
+  filteredTodos: Todo[] = [];
+  isSelected: string = "all";
 
   @Input() keyword!: string;
   @Input() clearAll: () => void;
@@ -27,13 +28,14 @@ export class TodoDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTodo();
-    this.todosNotCompleted = this.todos.filter((todo) => !todo.isCompleted);
   }
 
   getTodo() {
     this.todoService.readAllTodo().subscribe((data) => {
       this.todos = data;
+      this.filteredTodos = this.todos;
       this.isLoading = false;
+      this.todosNotCompleted = this.todos.filter((todo) => !todo.isCompleted);
     });
   }
 
@@ -73,17 +75,17 @@ export class TodoDetailComponent implements OnInit {
 
   selectFilter(option: string) {
     switch (option) {
-      case 'all':
-        return this.todos, (this.isSelected = 'all');
-      case 'todo':
+      case "all":
+        return (this.filteredTodos = this.todos), (this.isSelected = "all");
+      case "todo":
         return (
-          this.todos.filter((todo) => !todo.isCompleted),
-          (this.isSelected = 'todo')
+          (this.filteredTodos = this.todos.filter((todo) => !todo.isCompleted)),
+          (this.isSelected = "todo")
         );
-      case 'completed':
+      case "completed":
         return (
-          this.todos.filter((todo) => todo.isCompleted),
-          (this.isSelected = 'completed')
+          (this.filteredTodos = this.todos.filter((todo) => todo.isCompleted)),
+          (this.isSelected = "completed")
         );
       default:
         return this.todos;
